@@ -1,0 +1,55 @@
+<h2>Two way binding</h2>
+
+<h4>Two way binding is a combination of Property Binding and Event Binding</h4>
+<h5>Which means we can bind data 
+    from component class to the template and template to the 
+    component class
+</h5>
+
+
+<h3>One way problem statement</h3>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+          <input type="text" class="form-control" (keyup)="MessageChanged($event)" aria-describedby="helpId" placeholder="">
+        </div>
+    </div>
+    <div class="col-md-3">
+        {{OneWayMessage}}
+    </div>
+    <div class="col-md-3">
+        <button type="button" (click)="OneWayTest()" class="btn btn-primary">One Way Test</button>
+    </div>
+</div>
+
+<hr>
+
+<!-- <h3>Two way Binding</h3> 
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="TwoWayMessage" >
+        </div>
+    </div>
+    <div class="col-md-3">
+        {{TwoWayMessage}}
+    </div>
+    <div class="col-md-3">
+        <button type="button" (click)="TwoWayTest()" class="btn btn-primary">Two Way Test</button>
+    </div>
+</div> -->
+
+<h3>Two way Binding Example 2</h3> 
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+          <input type="text" class="form-control" (ngModelChange)="TwoWayChange($event)" [ngModel]="TwoWayMessage" >
+        </div>
+    </div>
+    <div class="col-md-3">
+        {{TwoWayMessage}}
+    </div>
+    <div class="col-md-3">
+        <button type="button" (click)="TwoWayTest()" class="btn btn-primary">Two Way Test</button>
+    </div>
+</div>
