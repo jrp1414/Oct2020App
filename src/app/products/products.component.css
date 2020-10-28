@@ -1,0 +1,16 @@
+.green{
+    background-color: chartreuse;
+    color: ghostwhite;
+}
+
+.yellow{
+ background-color: yellow;
+ color: blue;
+ font-style: italic;   
+}
+
+.bold{
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-stretch: wider;
+}
