@@ -33,6 +33,10 @@ export class ProductsComponent {
     this.filterText = data.target.value;
   }
 
+  receiveData(data:string){
+    console.log("Hello "+data);
+  }
+
   getClass(prod){
     if (prod.starRating>3) {
       // return "green bold";

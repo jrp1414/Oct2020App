@@ -1,0 +1,9 @@
+<div class="card">
+    <img class="card-img-top" width="80px" height="80px" [src]="product?.imageUrl" alt="">
+    <div class="card-body">
+        <h4 class="card-title">{{product?.productName}}</h4>
+        <h5 class="card-text">{{product?.productCode}}</h5>
+        <p class="card-text">{{product?.description?.descText}}</p>
+        <button type="button" class="btn btn-primary" (click)="SendToParent()">Send to Parent</button>
+    </div>
+</div>
