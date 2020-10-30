@@ -5,18 +5,16 @@
     </div>
     <div class="col-md-3">
         <div class="form-group">
-            <input type="text" class="form-control" (keyup)="Filter($event)" placeholder="Filter">
+            <input type="text" class="form-control" [(ngModel)]="filterText" placeholder="Filter">
         </div>
     </div>
     <!-- <div class="col-md-3 alert alert-danger" [hidden]="filterText.length<=2"> -->
-    <div class="col-md-3 alert alert-danger" *ngIf="filterText.length>2 else noFilter">
+    <div class="col-md-3 alert alert-danger" *ngIf="filterText.length>2">
         {{filterText}}
     </div>
-    <ng-template #noFilter>
-        <div class="col-md-3 alert alert-info">
-            No Filter Applied
-        </div>
-    </ng-template>
+    <div class="col-md-3">
+        <button type="button" class="btn btn-primary" (click)="AddData()">Add Data</button>
+    </div>
 </div>
 
 <div class="row">
@@ -24,7 +22,7 @@
         <product-thumbnail [pd]="prod"></product-thumbnail> 
     </div> -->
     <product-thumbnail 
-        *ngFor="let prod of products" 
+        *ngFor="let prod of products | filter : filterText : 'productName'"  
         class="col-md-4"  
         [pd]="prod"
         (pe)="receiveData($event)"

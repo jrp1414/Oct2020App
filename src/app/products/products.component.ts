@@ -45,6 +45,23 @@ export class ProductsComponent {
     return "yellow";
   }
 
+  AddData(){
+    this.products.push({
+      "productId": 1,
+      "productName": "Leaf Rake",
+      "productCode": "GDN-0011",
+      "releaseDate": new Date(2016, 10, 25),
+      "description": {
+        "descText": "Leaf rake with 48-inch wooden handle.",
+        "emailId": "test@test.com"
+      },
+      "price": 19.95,
+      "starRating": 1,
+      "currentAvailibility": true,
+      "imageUrl": "https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+    });
+  }
+
   products: any[] = [
     {
       "productId": 1,
