@@ -2,15 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from "@angular/forms";
 
-import { AppComponent } from './app.component';
-import { StringInterpolationComponent } from './string-interpolation/string-interpolation.component';
-import { PropertyBindingComponent } from './property-binding/property-binding.component';
-import { EventBindingComponent } from './event-binding/event-binding.component';
-import { TwowayBindingComponent } from './twoway-binding/twoway-binding.component';
-import { ProductsComponent } from './products/products.component';
-import { ProductThumbnailComponent } from './products/product-thumbnail/product-thumbnail.component';
-import { ShortenPipe } from './pipes/shorten.pipe';
-import { FilterPipe } from './pipes/filter.pipe';
+// import * as c from './component.index';
+import { AppComponent,StringInterpolationComponent,PropertyBindingComponent, EventBindingComponent,
+  TwowayBindingComponent, ProductsComponent, ProductThumbnailComponent } from './component.index';
+import { ShortenPipe,FilterPipe } from './pipe.index';
+import {BasicHighlightDirective} from "./directive.index";
 
 @NgModule({
   declarations: [
@@ -22,7 +18,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     ProductsComponent,
     ProductThumbnailComponent,
     ShortenPipe,
-    FilterPipe
+    FilterPipe,
+    BasicHighlightDirective
   ],
   imports: [
     BrowserModule,

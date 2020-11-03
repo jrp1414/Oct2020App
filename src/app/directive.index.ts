@@ -1,0 +1,1 @@
+export {BasicHighlightDirective} from "./directives/basic-highlight.directive";
