@@ -1,6 +1,8 @@
 <h3>Products List</h3>
 
 <h4 basic-highlight>Basic Highlight example</h4>
+<!-- <h4 better-highlight bgColor="yellowgreen">Better Highlight Example</h4> -->
+<h4 [better-highlight]="'chartreuse'" highlightColor="yellow">Better Highlight Example</h4>
 <div class="row">
     <div class="col-md-3">
         Filter
@@ -11,7 +13,22 @@
         </div>
     </div>
     <!-- <div class="col-md-3 alert alert-danger" [hidden]="filterText.length<=2"> -->
-    <div class="col-md-3 alert alert-danger" *ngIf="filterText.length>2">
+    <!-- <div class="col-md-3 alert alert-danger" *ngIf="filterText.length>2">
+        {{filterText}}
+    </div> -->
+    <!-- <ng-template [ngIf]="filterText.length>2" >
+        <div class="col-md-3 alert alert-danger" >
+            {{filterText}}
+        </div>
+    </ng-template> -->
+
+    <!-- <ng-template [unless]="filterText.length<=2" >
+        <div class="col-md-3 alert alert-danger" >
+            {{filterText}}
+        </div>
+    </ng-template> -->
+
+    <div *unless="filterText.length<=2" class="col-md-3 alert alert-danger">
         {{filterText}}
     </div>
     <div class="col-md-3">
@@ -23,12 +40,8 @@
     <!-- <div *ngFor="let prod of products" class="col-md-3" style="margin-right: 10px; margin-bottom: 10px;">
         <product-thumbnail [pd]="prod"></product-thumbnail> 
     </div> -->
-    <product-thumbnail 
-        *ngFor="let prod of products | filter : filterText : 'productName'"  
-        class="col-md-4"  
-        [pd]="prod"
-        (pe)="receiveData($event)"
-        >
+    <product-thumbnail *ngFor="let prod of products | filter : filterText : 'productName'" class="col-md-4" [pd]="prod"
+        (pe)="receiveData($event)">
     </product-thumbnail>
-    
+
 </div>

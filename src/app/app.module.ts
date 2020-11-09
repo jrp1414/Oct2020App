@@ -7,6 +7,8 @@ import { AppComponent,StringInterpolationComponent,PropertyBindingComponent, Eve
   TwowayBindingComponent, ProductsComponent, ProductThumbnailComponent } from './component.index';
 import { ShortenPipe,FilterPipe } from './pipe.index';
 import {BasicHighlightDirective} from "./directive.index";
+import { BetterHighlightDirective } from './directives/better-highlight.directive';
+import { UnlessDirective } from './directives/unless.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {BasicHighlightDirective} from "./directive.index";
     ProductThumbnailComponent,
     ShortenPipe,
     FilterPipe,
-    BasicHighlightDirective
+    BasicHighlightDirective,
+    BetterHighlightDirective,
+    UnlessDirective
   ],
   imports: [
     BrowserModule,
