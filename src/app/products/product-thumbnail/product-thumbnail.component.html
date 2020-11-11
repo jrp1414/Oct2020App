@@ -7,5 +7,6 @@
         <h5 class="card-text">{{product?.price | currency:'GBP':true:'1.2-2' }}</h5>
         <h5 class="card-text">{{product?.releaseDate | date : 'fullDate' }}</h5>
         <button type="button" class="btn btn-primary" (click)="SendToParent()">Send to Parent</button>
+        <button type="button" class="btn btn-primary" (click)="TestLogger()">Test Logger</button>
     </div>
 </div>
