@@ -1,0 +1,45 @@
+<div class="card" >
+    <div class="card-header">
+        {{product?.productCode}}
+    </div>
+    <div class="card-body" class="alert" [ngClass]="{'alert-success': product?.currentAvailibility,'alert-danger': !product?.currentAvailibility}" >
+        <h4 class="card-title" >{{product?.productName | uppercase }}</h4>
+        <div class="row card-text">
+            <div class="col-md-2">
+                Description
+            </div>
+            <div class="col-md-2">
+                {{product?.description?.descText | lowercase }}    
+            </div>
+        </div>
+        <div class="row card-text">
+            <div class="col-md-2">
+                Price
+            </div>
+            <div class="col-md-2">
+                {{product?.price | currency :'INR'}}    
+            </div>
+        </div>
+        <div class="row card-text">
+            <div class="col-md-2">
+                Release Date            </div>
+            <div class="col-md-2">
+                {{product?.releaseDate }}
+            </div>
+        </div>
+        <div class="row card-text">
+            <div class="col-md-2">
+                
+            </div>
+            <div class="col-md-2">
+                <img [src]="product?.imageUrl" width="50px" height="50px">
+            </div>
+        </div>        
+    </div>
+    <div class="card-footer text-muted">
+        {{product?.description?.emailId}}        
+      <button type="button" (click)="LoaFive()"  class="btn btn-primary">Load 5</button>  
+
+      <!-- <button type="button" [routerLink]="['/routePath']"    class="btn btn-primary">Load 5</button>   -->
+    </div>
+</div>

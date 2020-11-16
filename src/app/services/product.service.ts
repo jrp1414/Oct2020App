@@ -16,6 +16,10 @@ export class ProductService {
     return this.products;
   }
 
+  public getProductDetails(id:number):any{
+    return this.products.find(m=>m.productId==id);
+  }
+
   notify:EventEmitter<string> = new EventEmitter();
 
   private products: any[] = [
@@ -38,7 +42,7 @@ export class ProductService {
       "productName": "Garden Cart",
       "productCode": "GDN-0023",
       "releaseDate": new Date(2017, 9, 20),
-      //"description": { "descText": "15 gallon capacity rolling garden cart", "emailId": "test@test.com" },
+      "description": { "descText": "15 gallon capacity rolling garden cart", "emailId": "test@test.com" },
       "price": 32.99985,
       "starRating": 2,
       "currentAvailibility": false,

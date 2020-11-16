@@ -44,7 +44,14 @@
     <!-- <div *ngFor="let prod of products" class="col-md-3" style="margin-right: 10px; margin-bottom: 10px;">
         <product-thumbnail [pd]="prod"></product-thumbnail> 
     </div> -->
-    <product-thumbnail *ngFor="let prod of products | filter : filterText : 'productName'" class="col-md-4" [pd]="prod"
+    <!-- <product-thumbnail [routerLink]="['/productdetails',prod.productId,prod.description.emailId]" *ngFor="let prod of products | filter : filterText : 'productName'" class="col-md-4" [pd]="prod"
+        (pe)="receiveData($event)">
+    </product-thumbnail> -->
+    <!-- <product-thumbnail [routerLink]="['/productdetails',prod.productId,{email:prod.description.emailId}]" *ngFor="let prod of products | filter : filterText : 'productName'" class="col-md-4" [pd]="prod"
+        (pe)="receiveData($event)">
+    </product-thumbnail> -->
+
+    <product-thumbnail [routerLink]="['/productdetails',prod.productId]" [queryParams]="{email:prod.description.emailId,rating:prod.starRating}" *ngFor="let prod of products | filter : filterText : 'productName'" class="col-md-4" [pd]="prod"
         (pe)="receiveData($event)">
     </product-thumbnail>
 
