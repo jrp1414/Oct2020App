@@ -17,6 +17,10 @@ import { TempProductsComponent } from './temp-products/temp-products.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { StudentsComponent } from './students/students.component';
+import { StudentDetailsComponent } from './students/student-details/student-details.component';
+import { StudentEditComponent } from './students/student-edit/student-edit.component';
+import { StudentGuardService } from './students/services/student-guard.service';
 
 
 //     /home - Dashaboard
@@ -28,9 +32,19 @@ const routes: Routes = [
   { path: "products", component: ProductsComponent },
   // { path: "productdetails/:id/:email", component: ProductDetailsComponent },
   { path: "productdetails/:id", component: ProductDetailsComponent },
-  // { path: "", pathMatch: "full", redirectTo: "home" },
-  // { path: "**", redirectTo: "home" }
+  {
+    path: "students", component: StudentsComponent, children: [
+      {path:":id", component: StudentDetailsComponent, canActivate:[StudentGuardService]},
+      {path:":id/edit", component: StudentEditComponent}
+    ]
+  },
+  { path: "", pathMatch: "full", redirectTo: "home" },
+  { path: "**", redirectTo: "home" }
 ];
+
+//    /stuents - It will display the list of students
+//    /stuents/2 - It will display the details of student id 2
+
 
 @NgModule({
   declarations: [
@@ -49,7 +63,10 @@ const routes: Routes = [
     TempProductsComponent,
     HeaderComponent,
     DashboardComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    StudentsComponent,
+    StudentDetailsComponent,
+    StudentEditComponent
   ],
   imports: [
     BrowserModule,
