@@ -21,6 +21,7 @@ import { StudentsComponent } from './students/students.component';
 import { StudentDetailsComponent } from './students/student-details/student-details.component';
 import { StudentEditComponent } from './students/student-edit/student-edit.component';
 import { StudentGuardService } from './students/services/student-guard.service';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 //     /home - Dashaboard
@@ -34,10 +35,11 @@ const routes: Routes = [
   { path: "productdetails/:id", component: ProductDetailsComponent },
   {
     path: "students", component: StudentsComponent, children: [
-      {path:":id", component: StudentDetailsComponent, canActivate:[StudentGuardService]},
-      {path:":id/edit", component: StudentEditComponent}
+      { path: ":id", component: StudentDetailsComponent, canActivate: [StudentGuardService] },
+      { path: ":id/edit", component: StudentEditComponent }
     ]
   },
+  { path: "signup", component: SignUpComponent },
   { path: "", pathMatch: "full", redirectTo: "home" },
   { path: "**", redirectTo: "home" }
 ];
@@ -66,7 +68,8 @@ const routes: Routes = [
     ProductDetailsComponent,
     StudentsComponent,
     StudentDetailsComponent,
-    StudentEditComponent
+    StudentEditComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
