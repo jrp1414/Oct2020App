@@ -3,7 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styles: []
+  styles: [
+    `
+    input.ng-touched.ng-invalid{
+      border-color:darkred;
+      border-width:3px;
+    }
+    `
+  ]
 })
 export class SignUpComponent implements OnInit {
 
@@ -13,7 +20,7 @@ export class SignUpComponent implements OnInit {
   }
 
   OnSubmit(f){
-    console.log(f.value); 
+    console.log(f); 
   }
 
 }

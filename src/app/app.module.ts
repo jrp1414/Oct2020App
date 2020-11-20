@@ -22,6 +22,7 @@ import { StudentDetailsComponent } from './students/student-details/student-deta
 import { StudentEditComponent } from './students/student-edit/student-edit.component';
 import { StudentGuardService } from './students/services/student-guard.service';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MaxMinDirective } from './directives/max-min.directive';
 
 
 //     /home - Dashaboard
@@ -69,7 +70,8 @@ const routes: Routes = [
     StudentsComponent,
     StudentDetailsComponent,
     StudentEditComponent,
-    SignUpComponent
+    SignUpComponent,
+    MaxMinDirective
   ],
   imports: [
     BrowserModule,
