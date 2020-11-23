@@ -4,16 +4,16 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="FirstName">First Name</label>
-                    <input type="text" formControlName="FirstName" class="form-control" id="FirstName" aria-describedby="helpId"
-                        placeholder="First Name">
+                    <input type="text" formControlName="FirstName" class="form-control" id="FirstName"
+                        aria-describedby="helpId" placeholder="First Name">
                     <small id="helpId" class="form-text text-muted">First Name</small>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="LastName">Last Name</label>
-                    <input type="text" class="form-control" formControlName="LastName" id="LastName" aria-describedby="helpId"
-                        placeholder="Last Name">
+                    <input type="text" class="form-control" formControlName="LastName" id="LastName"
+                        aria-describedby="helpId" placeholder="Last Name">
                     <small id="helpId" class="form-text text-muted">Last Name</small>
                 </div>
             </div>
@@ -22,16 +22,16 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="EmailId">Email Id</label>
-                    <input type="email" class="form-control" id="EmailId" formControlName="EmailId" aria-describedby="emailHelpId"
-                        placeholder="Email id">
+                    <input type="email" class="form-control" id="EmailId" formControlName="EmailId"
+                        aria-describedby="emailHelpId" placeholder="Email id">
                     <small id="emailHelpId" class="form-text text-muted">Email Id</small>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="MobileNo">Mobile No</label>
-                    <input type="text" class="form-control" id="MobileNo" formControlName="MobileNo" aria-describedby="helpId"
-                        placeholder="Mobile No">
+                    <input type="text" class="form-control" id="MobileNo" formControlName="MobileNo"
+                        aria-describedby="helpId" placeholder="Mobile No">
                     <small id="helpId" class="form-text text-muted">Mobile No</small>
                 </div>
             </div>
@@ -40,16 +40,16 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="AddLine1">Address Line 1</label>
-                    <input type="text" formControlName="AddLine1" class="form-control" id="AddLine1" aria-describedby="helpId"
-                        placeholder="Line 1">
+                    <input type="text" formControlName="AddLine1" class="form-control" id="AddLine1"
+                        aria-describedby="helpId" placeholder="Line 1">
                     <small id="helpId" class="form-text text-muted">Line 1</small>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="AddLine2">Address Line 2</label>
-                    <input type="text" class="form-control" formControlName="AddLine2" id="AddLine2" aria-describedby="helpId"
-                        placeholder="Line 2">
+                    <input type="text" class="form-control" formControlName="AddLine2" id="AddLine2"
+                        aria-describedby="helpId" placeholder="Line 2">
                     <small id="helpId" class="form-text text-muted">Line 2</small>
                 </div>
             </div>
@@ -58,8 +58,8 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="AddLine3">Address Line 3</label>
-                    <input type="text" class="form-control" id="AddLine3" formControlName="AddLine3" aria-describedby="helpId"
-                        placeholder="Line 3">
+                    <input type="text" class="form-control" id="AddLine3" formControlName="AddLine3"
+                        aria-describedby="helpId" placeholder="Line 3">
                     <small id="helpId" class="form-text text-muted">Line 3</small>
                 </div>
             </div>
@@ -91,16 +91,18 @@
 
             </div>
         </div>
+        <div class="row" formArrayName="Hobbies">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" (click)="AddHobby()">Add Hobby</button>
+            </div>
+            <div *ngFor="let hobby of Hobbies.controls;let i=index" class="col-md-2">
+                <div class="form-group">
+                  <input type="text" class="form-control" [formControlName]="i">                  
+                </div>
+            </div>
 
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-<!--         
-        <div class="row">
-            <div class="col-md-6">
 
-            </div>
-            <div class="col-md-6">
-
-            </div>
-        </div> -->
     </form>
 </div>
