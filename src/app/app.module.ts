@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms"; 
 import { RouterModule, Routes, Route } from "@angular/router";
 
 // import * as c from './component.index';
@@ -76,6 +77,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [LoggerService],
