@@ -10,35 +10,24 @@ export class StudentEditComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
   studentEditForm: FormGroup;
-  FName: FormControl = new FormControl();
-  LName: FormControl = new FormControl();
-  EmailId: FormControl = new FormControl();
-  MobileNo: FormControl = new FormControl();
-  AddLine1: FormControl = new FormControl();
-  AddLine2: FormControl = new FormControl();
-  AddLine3: FormControl = new FormControl();
-  City: FormControl = new FormControl();
-  State: FormControl = new FormControl();
-  Address: FormGroup;
-
-  Hobbies: FormArray = new FormArray([
+  hobbies:FormArray = new FormArray([
     new FormControl()
   ]);
 
   ngOnInit(): void {
-    this.studentEditForm = new FormGroup({
-      FirstName: this.FName,
-      LastName: this.LName,
-      EmailId: this.EmailId,
-      MobileNo: this.MobileNo,
-      Address: new FormGroup({
-        AddLine1: this.AddLine1,
-        AddLine2: this.AddLine2,
-        AddLine3: this.AddLine3,
-        City: this.City,
-        State: this.State
+    this.studentEditForm = this.fb.group({
+      FirstName: this.fb.control(""),
+      LastName: this.fb.control(""),
+      EmailId: this.fb.control(""),
+      MobileNo: this.fb.control(""),
+      Address: this.fb.group({
+        AddLine1: this.fb.control(""),
+        AddLine2: this.fb.control(""),
+        AddLine3: this.fb.control(""),
+        City: this.fb.control(""),
+        State: this.fb.control("")
       }),
-      Hobbies: this.Hobbies
+      Hobbies: this.hobbies
     });
   }
 
@@ -47,7 +36,8 @@ export class StudentEditComponent implements OnInit {
   }
 
   AddHobby() {
-    this.Hobbies.push(new FormControl());
+    this.hobbies.push(new FormControl());
+    //(<FormArray>this.studentEditForm.get("Hobbies")).push(this.fb.control(""));
   }
 
 }

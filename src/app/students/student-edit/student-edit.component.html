@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div formGroupName="Address">
+        <div formGroupName="Address" class="card">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -96,8 +96,8 @@
         <div class="row" formArrayName="Hobbies">
             <div class="col-md-2">
                 <button type="button" class="btn btn-primary" (click)="AddHobby()">Add Hobby</button>
-            </div>
-            <div *ngFor="let hobby of Hobbies.controls;let i=index" class="col-md-2">
+            </div> 
+            <div *ngFor="let hobby of hobbies.controls;let i=index" class="col-md-2">
                 <div class="form-group">
                     <input type="text" class="form-control" [formControlName]="i">
                 </div>
