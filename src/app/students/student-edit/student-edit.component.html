@@ -5,8 +5,12 @@
                 <div class="form-group">
                     <label for="FirstName">First Name</label>
                     <input type="text" formControlName="FirstName" class="form-control" id="FirstName"
-                        aria-describedby="helpId" placeholder="First Name">
-                    <small id="helpId" class="form-text text-muted">First Name</small>
+                        placeholder="First Name">
+                    <small id="helpId"
+                        *ngIf="studentEditForm.controls.FirstName.errors?.required && studentEditForm.controls.FirstName.touched"
+                        class="alert alert-danger">First Name is Mandatory</small>
+                    <small id="helpId" *ngIf="studentEditForm.get('FirstName').errors?.minlength"
+                        class="alert alert-danger">Minimum Length need to be 3</small>
                 </div>
             </div>
             <div class="col-md-6">
@@ -14,17 +18,42 @@
                     <label for="LastName">Last Name</label>
                     <input type="text" class="form-control" formControlName="LastName" id="LastName"
                         aria-describedby="helpId" placeholder="Last Name">
-                    <small id="helpId" class="form-text text-muted">Last Name</small>
+                    <small id="helpId" *ngIf="studentEditForm.controls.LastName.errors?.required 
+                                    && studentEditForm.controls.LastName.touched" class="alert alert-danger">Last Name
+                        is Mandatory</small>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" formControlName="TermsAndConditions">
+                    Terms and Conditions
+                  </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-check form-check-inline">
+                   <label class="form-check-label">
+                       Notification Type: 
+                       <input class="form-check-input" type="radio" formControlName="NotificationType" value="email"> Email
+                       <input class="form-check-input" type="radio" formControlName="NotificationType" value="mobile"> Mobile
+                   </label>
+               </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="EmailId">Email Id</label>
                     <input type="email" class="form-control" id="EmailId" formControlName="EmailId"
                         aria-describedby="emailHelpId" placeholder="Email id">
-                    <small id="emailHelpId" class="form-text text-muted">Email Id</small>
+                        <small id="helpId"
+                        *ngIf="studentEditForm.controls.EmailId.errors?.required && studentEditForm.controls.EmailId.touched"
+                        class="alert alert-danger">Email id is Mandatory</small>
                 </div>
             </div>
             <div class="col-md-6">
@@ -36,67 +65,72 @@
                 </div>
             </div>
         </div>
-        <div formGroupName="Address" class="card">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="AddLine1">Address Line 1</label>
-                        <input type="text" formControlName="AddLine1" class="form-control" id="AddLine1"
-                            aria-describedby="helpId" placeholder="Line 1">
-                        <small id="helpId" class="form-text text-muted">Line 1</small>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="AddLine2">Address Line 2</label>
-                        <input type="text" class="form-control" formControlName="AddLine2" id="AddLine2"
-                            aria-describedby="helpId" placeholder="Line 2">
-                        <small id="helpId" class="form-text text-muted">Line 2</small>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="AddLine3">Address Line 3</label>
-                        <input type="text" class="form-control" id="AddLine3" formControlName="AddLine3"
-                            aria-describedby="helpId" placeholder="Line 3">
-                        <small id="helpId" class="form-text text-muted">Line 3</small>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="City">City</label>
-                        <select class="form-control" id="City" formControlName="City">
-                            <option>Pune</option>
-                            <option>New York</option>
-                            <option>Mumbai</option>
-                            <option>Bengaluru</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="State">State</label>
-                        <select class="form-control" formControlName="State" id="State">
-                            <option>Maharashtra</option>
-                            <option>Odisha</option>
-                            <option>Karnataka</option>
-                            <option>West Bengal</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
 
+        <div formArrayName="Addresses">
+            <button type="button" class="btn btn-primary" (click)="AddAddress()">Add Address</button>
+            <div *ngFor="let item of Addresses.controls;let i=index" [formGroupName]="i" class="card"
+                style="border-width: 2px;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="AddLine1">Address Line 1</label>
+                            <input type="text" formControlName="AddLine1" class="form-control" id="AddLine1"
+                                aria-describedby="helpId" placeholder="Line 1">
+                            <small id="helpId" class="form-text text-muted">Line 1</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="AddLine2">Address Line 2</label>
+                            <input type="text" class="form-control" formControlName="AddLine2" id="AddLine2"
+                                aria-describedby="helpId" placeholder="Line 2">
+                            <small id="helpId" class="form-text text-muted">Line 2</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="AddLine3">Address Line 3</label>
+                            <input type="text" class="form-control" id="AddLine3" formControlName="AddLine3"
+                                aria-describedby="helpId" placeholder="Line 3">
+                            <small id="helpId" class="form-text text-muted">Line 3</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="City">City</label>
+                            <select class="form-control" id="City" formControlName="City">
+                                <option>Pune</option>
+                                <option>New York</option>
+                                <option>Mumbai</option>
+                                <option>Bengaluru</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="State">State</label>
+                            <select class="form-control" formControlName="State" id="State">
+                                <option>Maharashtra</option>
+                                <option>Odisha</option>
+                                <option>Karnataka</option>
+                                <option>West Bengal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row" formArrayName="Hobbies">
             <div class="col-md-2">
                 <button type="button" class="btn btn-primary" (click)="AddHobby()">Add Hobby</button>
-            </div> 
+            </div>
             <div *ngFor="let hobby of hobbies.controls;let i=index" class="col-md-2">
                 <div class="form-group">
                     <input type="text" class="form-control" [formControlName]="i">
@@ -104,7 +138,7 @@
             </div>
 
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" [disabled]="studentEditForm.invalid" class="btn btn-primary">Submit</button>
 
     </form>
 </div>
