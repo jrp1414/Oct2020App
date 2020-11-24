@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-student-edit',
@@ -8,7 +8,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class StudentEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
   studentEditForm: FormGroup;
   FName: FormControl = new FormControl();
   LName: FormControl = new FormControl();
@@ -19,7 +19,9 @@ export class StudentEditComponent implements OnInit {
   AddLine3: FormControl = new FormControl();
   City: FormControl = new FormControl();
   State: FormControl = new FormControl();
-  Hobbies:FormArray = new FormArray([
+  Address: FormGroup;
+
+  Hobbies: FormArray = new FormArray([
     new FormControl()
   ]);
 
@@ -29,20 +31,22 @@ export class StudentEditComponent implements OnInit {
       LastName: this.LName,
       EmailId: this.EmailId,
       MobileNo: this.MobileNo,
-      AddLine1: this.AddLine1,
-      AddLine2: this.AddLine2,
-      AddLine3: this.AddLine3,
-      City: this.City,
-      State: this.State,
-      Hobbies:this.Hobbies
+      Address: new FormGroup({
+        AddLine1: this.AddLine1,
+        AddLine2: this.AddLine2,
+        AddLine3: this.AddLine3,
+        City: this.City,
+        State: this.State
+      }),
+      Hobbies: this.Hobbies
     });
   }
 
-  OnSubmit(){
+  OnSubmit() {
     console.log(this.studentEditForm.value);
   }
 
-  AddHobby(){
+  AddHobby() {
     this.Hobbies.push(new FormControl());
   }
 
