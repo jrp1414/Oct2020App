@@ -38,6 +38,9 @@
                <div class="form-check form-check-inline">
                    <label class="form-check-label">
                        Notification Type: 
+                       <!-- <input class="form-check-input" (click)="SetNotification('email')" type="radio" formControlName="NotificationType" value="email"> Email
+                       <input class="form-check-input" (click)="SetNotification('mobile')" type="radio" formControlName="NotificationType" value="mobile"> Mobile -->
+
                        <input class="form-check-input" type="radio" formControlName="NotificationType" value="email"> Email
                        <input class="form-check-input" type="radio" formControlName="NotificationType" value="mobile"> Mobile
                    </label>
@@ -61,7 +64,9 @@
                     <label for="MobileNo">Mobile No</label>
                     <input type="text" class="form-control" id="MobileNo" formControlName="MobileNo"
                         aria-describedby="helpId" placeholder="Mobile No">
-                    <small id="helpId" class="form-text text-muted">Mobile No</small>
+                        <small id="helpId"
+                        *ngIf="studentEditForm.controls.MobileNo.errors?.required && studentEditForm.controls.MobileNo.touched"
+                        class="alert alert-danger">Mobile No is Mandatory</small>
                 </div>
             </div>
         </div>

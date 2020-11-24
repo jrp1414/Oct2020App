@@ -38,6 +38,10 @@ export class StudentEditComponent implements OnInit {
       Addresses:this.Addresses,
       Hobbies: this.hobbies
     });
+
+    this.studentEditForm.get("NotificationType").valueChanges.subscribe(value=>{
+      this.SetNotification(value);
+    });
   }
 
   OnSubmit() {
@@ -57,6 +61,16 @@ export class StudentEditComponent implements OnInit {
       City: this.fb.control(""),
       State: this.fb.control("")
     }));
+  }
+
+  SetNotification(notificationType:string){
+    let mobileNoControl = this.studentEditForm.get("MobileNo");
+    if (notificationType=='mobile') {
+      mobileNoControl.setValidators(Validators.required);
+    }else{
+      mobileNoControl.clearValidators();
+    }
+    mobileNoControl.updateValueAndValidity();
   }
 
 }
