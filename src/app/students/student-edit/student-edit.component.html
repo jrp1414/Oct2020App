@@ -27,14 +27,6 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" formControlName="TermsAndConditions">
-                    Terms and Conditions
-                  </label>
-                </div>
-            </div>
-            <div class="col-md-6">
                <div class="form-check form-check-inline">
                    <label class="form-check-label">
                        Notification Type: 
@@ -71,9 +63,7 @@
             </div>
         </div>
 
-        <div formArrayName="Addresses">
-            <button type="button" class="btn btn-primary" (click)="AddAddress()">Add Address</button>
-            <div *ngFor="let item of Addresses.controls;let i=index" [formGroupName]="i" class="card"
+        <div formGroupName="Address" class="card"
                 style="border-width: 2px;">
                 <div class="row">
                     <div class="col-md-6">
@@ -130,19 +120,7 @@
 
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row" formArrayName="Hobbies">
-            <div class="col-md-2">
-                <button type="button" class="btn btn-primary" (click)="AddHobby()">Add Hobby</button>
-            </div>
-            <div *ngFor="let hobby of hobbies.controls;let i=index" class="col-md-2">
-                <div class="form-group">
-                    <input type="text" class="form-control" [formControlName]="i">
-                </div>
-            </div>
-
-        </div>
+            </div>   
         <button type="submit" [disabled]="studentEditForm.invalid" class="btn btn-primary">Submit</button>
 
     </form>

@@ -12,6 +12,11 @@ export class StudentsComponent implements OnInit {
 
   ngOnInit(): void {
       this.studentsList = this.ss.getStudents();
+      this.ss.notify.subscribe((flag)=>{
+        if(flag){
+          this.studentsList = this.ss.getStudents();
+        }
+      });
   }
 
 }
