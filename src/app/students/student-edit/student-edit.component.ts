@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RangeValidator } from 'src/app/Validators/range.validation';
 import { StudentService } from '../services/student.service';
 import { Student } from '../services/stuent.data';
 
@@ -29,7 +30,9 @@ export class StudentEditComponent implements OnInit {
         AddLine3: this.fb.control(""),
         City: this.fb.control(""),
         State: this.fb.control("")
-      })
+      }),
+      // Age:this.fb.control(0,[Validators.required,ValidateAge])
+      Age:this.fb.control(0,[Validators.required,RangeValidator(12,26)])
     });
 
     this.route.params.subscribe((params)=>{
@@ -61,3 +64,10 @@ export class StudentEditComponent implements OnInit {
   }
 
 }
+
+// function ValidateAge(control:AbstractControl):ValidationErrors | null {
+//   if (control.value >=10 && control.value <=25) {
+//     return null;
+//   }
+//   return {range:true};
+// }

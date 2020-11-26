@@ -27,16 +27,28 @@
 
         <div class="row">
             <div class="col-md-6">
-               <div class="form-check form-check-inline">
-                   <label class="form-check-label">
-                       Notification Type: 
-                       <!-- <input class="form-check-input" (click)="SetNotification('email')" type="radio" formControlName="NotificationType" value="email"> Email
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        Notification Type:
+                        <!-- <input class="form-check-input" (click)="SetNotification('email')" type="radio" formControlName="NotificationType" value="email"> Email
                        <input class="form-check-input" (click)="SetNotification('mobile')" type="radio" formControlName="NotificationType" value="mobile"> Mobile -->
 
-                       <input class="form-check-input" type="radio" formControlName="NotificationType" value="email"> Email
-                       <input class="form-check-input" type="radio" formControlName="NotificationType" value="mobile"> Mobile
-                   </label>
-               </div>
+                        <input class="form-check-input" type="radio" formControlName="NotificationType" value="email">
+                        Email
+                        <input class="form-check-input" type="radio" formControlName="NotificationType" value="mobile">
+                        Mobile
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Age">Age</label>
+                    <input type="text" class="form-control" formControlName="Age" id="Age" aria-describedby="helpId">
+                    <small id="helpId" *ngIf="studentEditForm.controls.Age.errors?.required 
+                                    && studentEditForm.controls.Age.touched" class="alert alert-danger">Age
+                        is Mandatory</small>
+                    <small id="helpId" *ngIf="studentEditForm.controls.Age.errors?.range" class="alert alert-danger">Age must be in a range of 12 and 26</small>
+                </div>
             </div>
         </div>
 
@@ -46,7 +58,7 @@
                     <label for="EmailId">Email Id</label>
                     <input type="email" class="form-control" id="EmailId" formControlName="EmailId"
                         aria-describedby="emailHelpId" placeholder="Email id">
-                        <small id="helpId"
+                    <small id="helpId"
                         *ngIf="studentEditForm.controls.EmailId.errors?.required && studentEditForm.controls.EmailId.touched"
                         class="alert alert-danger">Email id is Mandatory</small>
                 </div>
@@ -56,71 +68,70 @@
                     <label for="MobileNo">Mobile No</label>
                     <input type="text" class="form-control" id="MobileNo" formControlName="MobileNo"
                         aria-describedby="helpId" placeholder="Mobile No">
-                        <small id="helpId"
+                    <small id="helpId"
                         *ngIf="studentEditForm.controls.MobileNo.errors?.required && studentEditForm.controls.MobileNo.touched"
                         class="alert alert-danger">Mobile No is Mandatory</small>
                 </div>
             </div>
         </div>
 
-        <div formGroupName="Address" class="card"
-                style="border-width: 2px;">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="AddLine1">Address Line 1</label>
-                            <input type="text" formControlName="AddLine1" class="form-control" id="AddLine1"
-                                aria-describedby="helpId" placeholder="Line 1">
-                            <small id="helpId" class="form-text text-muted">Line 1</small>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="AddLine2">Address Line 2</label>
-                            <input type="text" class="form-control" formControlName="AddLine2" id="AddLine2"
-                                aria-describedby="helpId" placeholder="Line 2">
-                            <small id="helpId" class="form-text text-muted">Line 2</small>
-                        </div>
+        <div formGroupName="Address" class="card" style="border-width: 2px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AddLine1">Address Line 1</label>
+                        <input type="text" formControlName="AddLine1" class="form-control" id="AddLine1"
+                            aria-describedby="helpId" placeholder="Line 1">
+                        <small id="helpId" class="form-text text-muted">Line 1</small>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="AddLine3">Address Line 3</label>
-                            <input type="text" class="form-control" id="AddLine3" formControlName="AddLine3"
-                                aria-describedby="helpId" placeholder="Line 3">
-                            <small id="helpId" class="form-text text-muted">Line 3</small>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="City">City</label>
-                            <select class="form-control" id="City" formControlName="City">
-                                <option>Pune</option>
-                                <option>New York</option>
-                                <option>Mumbai</option>
-                                <option>Bengaluru</option>
-                            </select>
-                        </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AddLine2">Address Line 2</label>
+                        <input type="text" class="form-control" formControlName="AddLine2" id="AddLine2"
+                            aria-describedby="helpId" placeholder="Line 2">
+                        <small id="helpId" class="form-text text-muted">Line 2</small>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="State">State</label>
-                            <select class="form-control" formControlName="State" id="State">
-                                <option>Maharashtra</option>
-                                <option>Odisha</option>
-                                <option>Karnataka</option>
-                                <option>West Bengal</option>
-                            </select>
-                        </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AddLine3">Address Line 3</label>
+                        <input type="text" class="form-control" id="AddLine3" formControlName="AddLine3"
+                            aria-describedby="helpId" placeholder="Line 3">
+                        <small id="helpId" class="form-text text-muted">Line 3</small>
                     </div>
-                    <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="City">City</label>
+                        <select class="form-control" id="City" formControlName="City">
+                            <option>Pune</option>
+                            <option>New York</option>
+                            <option>Mumbai</option>
+                            <option>Bengaluru</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="State">State</label>
+                        <select class="form-control" formControlName="State" id="State">
+                            <option>Maharashtra</option>
+                            <option>Odisha</option>
+                            <option>Karnataka</option>
+                            <option>West Bengal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
 
-                    </div>
                 </div>
-            </div>   
+            </div>
+        </div>
         <button type="submit" [disabled]="studentEditForm.invalid" class="btn btn-primary">Submit</button>
 
     </form>
