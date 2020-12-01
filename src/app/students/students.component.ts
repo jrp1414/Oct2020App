@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { StudentService } from './services/student.service';
 
 @Component({
@@ -7,16 +8,32 @@ import { StudentService } from './services/student.service';
   styles: []
 })
 export class StudentsComponent implements OnInit {
-  studentsList:any[];
-  constructor(private ss:StudentService) { }
+  studentsList: any[];
+  constructor(private ss: StudentService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-      this.studentsList = this.ss.getStudents();
-      this.ss.notify.subscribe((flag)=>{
-        if(flag){
-          this.studentsList = this.ss.getStudents();
-        }
+    this.route.data.subscribe((data)=>{
+      this.studentsList = data.students;
+    });
+    this.ss.notify.subscribe((flag) => {
+      if (flag) {
+        this.RefreshStudentsList();
+      }
+    });
+  }
+
+  DeleteStudent(studentId: number, firstName: string, lastName: string) {
+    if (confirm("Are you sure to Delete " + firstName + " " + lastName + " ?")) {
+      this.ss.deleteStudent(studentId).subscribe((resp) => {
+        this.RefreshStudentsList();
       });
+    }
+  }
+
+  RefreshStudentsList() {
+    this.ss.getStudents().subscribe((resp) => {
+      this.studentsList = resp;
+    });
   }
 
 }

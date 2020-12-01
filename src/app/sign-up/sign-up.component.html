@@ -7,16 +7,8 @@
                     <input type="text" #firstName="ngModel" ngModel required minlength="3" maxlength="12" name="FirstName" class="form-control" id="FirstName" aria-describedby="helpId" placeholder="First Name">
                     <!-- <small id="helpId" *ngIf="firstName.invalid && firstName.touched" class="form-text alert alert-danger">First Name is mandatory</small> -->
                     <small id="helpId" *ngIf="firstName.errors?.required && firstName.touched" class="form-text alert alert-danger">First Name is mandatory</small>
-                    <small id="helpId" *ngIf="firstName.errors?.minlength" class="form-text alert alert-danger">Min 3 characters required</small>
+                    <small id="helpId" *ngIf="firstName.errors?.minlength" class="form-text alert alert-danger">Min 3 characters required</small>                   
                     
-                    <!-- <ul class="list-group">
-                      <li class="list-group-item">dirty: {{firstName.dirty}}</li>
-                      <li class="list-group-item">pristine: {{firstName.pristine}}</li>
-                      <li class="list-group-item">touched: {{firstName.touched}}</li>
-                      <li class="list-group-item">untouched: {{firstName.untouched}}</li>
-                      <li class="list-group-item">valid: {{firstName.valid}}</li>
-                      <li class="list-group-item">invalid: {{firstName.invalid}}</li>
-                    </ul> -->
                 </div>
             </div>
             <div class="col-md-6">
@@ -34,6 +26,12 @@
                 <input type="email" class="form-control"  email #emailId="ngModel" ngModel name="EmailId" id="EmailId" aria-describedby="emailHelpId" placeholder="Email Id">
                 <small id="helpId" *ngIf="emailId.errors?.email && emailId.touched" class="form-text alert alert-danger">Invalid email id</small>
               </div>                  
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Address">Address</label>
+                <textarea class="form-control" ngModel name="Address" id="Address" rows="3"></textarea>
+              </div>  
             </div>            
         </div>
         <div class="row">
@@ -50,76 +48,7 @@
                   </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-              <div class="form-check form-check-inline">
-                  <label class="form-check-label">
-                      <input class="form-check-input" type="radio" ngModel name="Gender" value="male"> Male
-                      <input class="form-check-input" type="radio" ngModel name="Gender" value="female"> Female
-                  </label>
-              </div>  
-            </div>
-            <div class="col-md-6">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" ngModel name="TermsAndConditions" id="TermsAndConditions" value="TermsAndConditions" checked>
-                    Term & Conditions
-                  </label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label for="City">City</label>
-                  <select class="form-control" ngModel name="City" id="City">
-                    <option>Pune</option>
-                    <option>Mumbai</option>
-                    <option>Bengaluru</option>
-                    <option>Chennai</option>
-                  </select>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label for="Skills">Skills</label>
-                  <select multiple class="form-control" ngModel name="Skills" id="Skills">
-                    <option>C#</option>
-                    <option>ASP.Net</option>
-                    <option>MVC</option>
-                    <option>Angular</option>
-                    <option>Javascript</option>
-                  </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label for="Age">Age</label>
-                  <input type="number"
-                    class="form-control" #Age="ngModel" ngModel name="Age" [MaxMin]="{max:25,min:12}" id="Age" aria-describedby="helpId" placeholder="Age">
-                    <small id="helpId" *ngIf="(Age.errors?.max || Age.errors?.min) && Age.touched" class="form-text alert alert-danger">Age should be between 12 and 25</small>
-                </div>          
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="Address">Address</label>
-                <textarea class="form-control" ngModel name="Address" id="Address" rows="3"></textarea>
-              </div>  
-            </div>
-        </div>
-
-        <!-- <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Sign Up</button> -->
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-
-        <!-- <ul class="list-group">
-          <li class="list-group-item">Dirty: {{f.dirty}}</li>
-          <li class="list-group-item">pristine: {{f.pristine}}</li>
-          <li class="list-group-item">touched: {{f.touched}}</li>                    
-          <li class="list-group-item">untouched: {{f.untouched}}</li>
-          <li class="list-group-item">valid: {{f.valid}}</li>
-          <li class="list-group-item">invalid: {{f.invalid}}</li>
-        </ul> -->
+        <button type="submit" [disabled]="f.invalid" class="btn btn-primary">Sign Up</button>
+        <!-- <button type="submit" class="btn btn-primary">Sign Up</button> -->
     </form>
 </div>

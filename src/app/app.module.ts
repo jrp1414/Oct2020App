@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import {ReactiveFormsModule} from "@angular/forms"; 
+import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes, Route } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
 
 // import * as c from './component.index';
 import {
@@ -24,6 +25,11 @@ import { StudentEditComponent } from './students/student-edit/student-edit.compo
 import { StudentGuardService } from './students/services/student-guard.service';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MaxMinDirective } from './directives/max-min.directive';
+import { StudentAddComponent } from './students/student-add/student-add.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { StudentsResolver } from './students/services/students.resolver';
+import { StudentDetailsResolver } from './students/services/student-details.resolver';
 
 
 //     /home - Dashaboard
@@ -36,9 +42,10 @@ const routes: Routes = [
   // { path: "productdetails/:id/:email", component: ProductDetailsComponent },
   { path: "productdetails/:id", component: ProductDetailsComponent },
   {
-    path: "students", component: StudentsComponent, children: [
-      { path: ":id", component: StudentDetailsComponent, canActivate: [StudentGuardService] },
-      { path: ":id/edit", component: StudentEditComponent }
+    path: "students", component: StudentsComponent, resolve:{students:StudentsResolver}, children: [
+      { path: "new", component: StudentAddComponent },
+      { path: ":id", component: StudentDetailsComponent,resolve:{student:StudentDetailsResolver} }, //, canActivate: [StudentGuardService]
+      { path: ":id/edit", component: StudentEditComponent }      
     ]
   },
   { path: "signup", component: SignUpComponent },
@@ -72,13 +79,17 @@ const routes: Routes = [
     StudentDetailsComponent,
     StudentEditComponent,
     SignUpComponent,
-    MaxMinDirective
+    MaxMinDirective,
+    StudentAddComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [LoggerService],
   bootstrap: [AppComponent]

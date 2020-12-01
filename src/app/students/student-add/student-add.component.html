@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="studentEditForm" (ngSubmit)="OnSubmit()">
+    <form [formGroup]="studentAddForm" (ngSubmit)="OnSubmit()">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -7,9 +7,9 @@
                     <input type="text" formControlName="FirstName" class="form-control" id="FirstName"
                         placeholder="First Name">
                     <small id="helpId"
-                        *ngIf="studentEditForm.controls.FirstName.errors?.required && studentEditForm.controls.FirstName.touched"
+                        *ngIf="studentAddForm.controls.FirstName.errors?.required && studentAddForm.controls.FirstName.touched"
                         class="alert alert-danger">First Name is Mandatory</small>
-                    <small id="helpId" *ngIf="studentEditForm.get('FirstName').errors?.minlength"
+                    <small id="helpId" *ngIf="studentAddForm.get('FirstName').errors?.minlength"
                         class="alert alert-danger">Minimum Length need to be 3</small>
                 </div>
             </div>
@@ -18,8 +18,8 @@
                     <label for="LastName">Last Name</label>
                     <input type="text" class="form-control" formControlName="LastName" id="LastName"
                         aria-describedby="helpId" placeholder="Last Name">
-                    <small id="helpId" *ngIf="studentEditForm.controls.LastName.errors?.required 
-                                    && studentEditForm.controls.LastName.touched" class="alert alert-danger">Last Name
+                    <small id="helpId" *ngIf="studentAddForm.controls.LastName.errors?.required 
+                                    && studentAddForm.controls.LastName.touched" class="alert alert-danger">Last Name
                         is Mandatory</small>
                 </div>
             </div>
@@ -30,9 +30,6 @@
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
                         Notification Type:
-                        <!-- <input class="form-check-input" (click)="SetNotification('email')" type="radio" formControlName="NotificationType" value="email"> Email
-                       <input class="form-check-input" (click)="SetNotification('mobile')" type="radio" formControlName="NotificationType" value="mobile"> Mobile -->
-
                         <input class="form-check-input" type="radio" formControlName="NotificationType" value="email">
                         Email
                         <input class="form-check-input" type="radio" formControlName="NotificationType" value="mobile">
@@ -50,7 +47,7 @@
                     <input type="email" class="form-control" id="EmailId" formControlName="EmailId"
                         aria-describedby="emailHelpId" placeholder="Email id">
                     <small id="helpId"
-                        *ngIf="studentEditForm.controls.EmailId.errors?.required && studentEditForm.controls.EmailId.touched"
+                        *ngIf="studentAddForm.controls.EmailId.errors?.required && studentAddForm.controls.EmailId.touched"
                         class="alert alert-danger">Email id is Mandatory</small>
                 </div>
             </div>
@@ -60,7 +57,7 @@
                     <input type="text" class="form-control" id="MobileNo" formControlName="MobileNo"
                         aria-describedby="helpId" placeholder="Mobile No">
                     <small id="helpId"
-                        *ngIf="studentEditForm.controls.MobileNo.errors?.required && studentEditForm.controls.MobileNo.touched"
+                        *ngIf="studentAddForm.controls.MobileNo.errors?.required && studentAddForm.controls.MobileNo.touched"
                         class="alert alert-danger">Mobile No is Mandatory</small>
                 </div>
             </div>
@@ -123,7 +120,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" [disabled]="studentEditForm.invalid" class="btn btn-primary">Submit</button>
+        <button type="submit" [disabled]="studentAddForm.invalid" class="btn btn-primary">Submit</button>
 
     </form>
 </div>

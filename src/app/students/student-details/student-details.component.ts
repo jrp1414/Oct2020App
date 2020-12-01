@@ -14,8 +14,14 @@ export class StudentDetailsComponent implements OnInit {
   constructor(private ss:StudentService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((param)=>{
-      this.student = this.ss.getStudentDetails(+param.id);
+    // this.route.params.subscribe((param)=>{
+    //   this.ss.getStudentDetails(+param.id).subscribe((resp)=>{
+    //     this.student = resp;
+    //   });
+    // });
+
+    this.route.data.subscribe((data)=>{
+      this.student = data.student;
     });
   }
 
