@@ -65,6 +65,10 @@ export class StudentEditComponent implements OnInit {
     mobileNoControl.updateValueAndValidity();
   }
 
+  Cancel(){
+    this.router.navigate(["/students"]);
+  }
+
 }
 
 // function ValidateAge(control:AbstractControl):ValidationErrors | null {

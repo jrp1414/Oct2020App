@@ -30,6 +30,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { StudentsResolver } from './students/services/students.resolver';
 import { StudentDetailsResolver } from './students/services/student-details.resolver';
+import { StudentCanDeactivateGuard } from './students/services/student-edit.deactivate-guard';
+import { AuthGuard } from './services/auth.guard';
+import { PrimengModule } from './primeng/primeng.module';
+import { MessageService } from 'primeng/api';
 
 
 //     /home - Dashaboard
@@ -38,14 +42,14 @@ import { StudentDetailsResolver } from './students/services/student-details.reso
 // const routes:Route[] = [
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
-  { path: "products", component: ProductsComponent },
+  { path: "products", component: ProductsComponent, canActivate:[AuthGuard] },
   // { path: "productdetails/:id/:email", component: ProductDetailsComponent },
-  { path: "productdetails/:id", component: ProductDetailsComponent },
+  { path: "productdetails/:id", component: ProductDetailsComponent,canActivate:[AuthGuard] },
   {
-    path: "students", component: StudentsComponent, resolve:{students:StudentsResolver}, children: [
+    path: "students", component: StudentsComponent,canActivate:[AuthGuard], resolve:{students:StudentsResolver}, children: [
       { path: "new", component: StudentAddComponent },
       { path: ":id", component: StudentDetailsComponent,resolve:{student:StudentDetailsResolver} }, //, canActivate: [StudentGuardService]
-      { path: ":id/edit", component: StudentEditComponent }      
+      { path: ":id/edit", component: StudentEditComponent,canDeactivate:[StudentCanDeactivateGuard] }      
     ]
   },
   { path: "signup", component: SignUpComponent },
@@ -89,9 +93,10 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    PrimengModule
   ],
-  providers: [LoggerService],
+  providers: [LoggerService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

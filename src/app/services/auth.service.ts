@@ -10,11 +10,16 @@ export class AuthService{
     constructor(private http:HttpClient) {
         
     }
+    isAuthenticated:boolean= false;
 
     private baseUrl:string="http://localhost:44319/";
 
     SignUp(user:any):Observable<any>{
         return this.http.post(this.baseUrl+"SignUpUser",user);
+    }
+
+    SignIn(user:any):Observable<any>{
+        return this.http.post(this.baseUrl+"SignIn",user);
     }
 
 }

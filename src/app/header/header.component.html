@@ -18,9 +18,12 @@
             
             
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <form *ngIf="!auth.isAuthenticated" (ngSubmit)="OnSubmit(f)" #f="ngForm" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" #emailId="ngModel" ngModel required email class="form-control" name="EmailId" type="email" placeholder="Email Id">
+            <input class="form-control mr-sm-2" #password="ngModel" ngModel required name="Password" type="password" placeholder="Password">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Sign In</button> | 
             <button class="btn btn-primary my-2 my-sm-0" routerLink="signup">Sign Up</button>
-        </form>        
+        </form>
+        <button *ngIf="auth.isAuthenticated" class="btn btn-danger my-2 my-sm-0" (click)="SignOut()" >Sign Out</button> | 
     </div>
 </nav>
