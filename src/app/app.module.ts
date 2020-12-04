@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes, Route } from "@angular/router";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 // import * as c from './component.index';
 import {
@@ -34,6 +34,7 @@ import { StudentCanDeactivateGuard } from './students/services/student-edit.deac
 import { AuthGuard } from './services/auth.guard';
 import { PrimengModule } from './primeng/primeng.module';
 import { MessageService } from 'primeng/api';
+import { OctoberBatchInterceptor } from './services/http.interceptor';
 
 
 //     /home - Dashaboard
@@ -42,14 +43,14 @@ import { MessageService } from 'primeng/api';
 // const routes:Route[] = [
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
-  { path: "products", component: ProductsComponent, canActivate:[AuthGuard] },
+  { path: "products", component: ProductsComponent, canActivate: [AuthGuard] },
   // { path: "productdetails/:id/:email", component: ProductDetailsComponent },
-  { path: "productdetails/:id", component: ProductDetailsComponent,canActivate:[AuthGuard] },
+  { path: "productdetails/:id", component: ProductDetailsComponent, canActivate: [AuthGuard] },
   {
-    path: "students", component: StudentsComponent,canActivate:[AuthGuard], resolve:{students:StudentsResolver}, children: [
+    path: "students", component: StudentsComponent, canActivate: [AuthGuard], resolve: { students: StudentsResolver }, children: [
       { path: "new", component: StudentAddComponent },
-      { path: ":id", component: StudentDetailsComponent,resolve:{student:StudentDetailsResolver} }, //, canActivate: [StudentGuardService]
-      { path: ":id/edit", component: StudentEditComponent,canDeactivate:[StudentCanDeactivateGuard] }      
+      { path: ":id", component: StudentDetailsComponent, resolve: { student: StudentDetailsResolver } }, //, canActivate: [StudentGuardService]
+      { path: ":id/edit", component: StudentEditComponent, canDeactivate: [StudentCanDeactivateGuard] }
     ]
   },
   { path: "signup", component: SignUpComponent },
@@ -96,7 +97,11 @@ const routes: Routes = [
     MaterialModule,
     PrimengModule
   ],
-  providers: [LoggerService,MessageService],
+  providers: [
+    LoggerService,
+    MessageService,
+    { provide: HTTP_INTERCEPTORS, useClass: OctoberBatchInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
