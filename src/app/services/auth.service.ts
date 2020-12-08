@@ -11,6 +11,7 @@ export class AuthService{
         
     }
     isAuthenticated:boolean= false;
+    token:string="";
 
     private baseUrl:string="http://localhost:44319/";
 

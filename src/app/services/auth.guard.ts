@@ -9,9 +9,8 @@ export class AuthGuard implements CanActivate {
         private primengConfig: PrimeNGConfig) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        let token = localStorage.getItem("token");
+        let token = this.auth.token;
         if (token) {
-            this.auth.isAuthenticated = true;
             return true;
         }
         this.messageService.add({
