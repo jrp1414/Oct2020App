@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes, Route } from "@angular/router";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import {SharedModule} from "./shared/shared.module";
@@ -16,23 +15,16 @@ import { TempProductsComponent } from './temp-products/temp-products.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
-import { StudentsComponent } from './students/students.component';
-import { StudentDetailsComponent } from './students/student-details/student-details.component';
-import { StudentEditComponent } from './students/student-edit/student-edit.component';
-import { StudentGuardService } from './students/services/student-guard.service';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { StudentAddComponent } from './students/student-add/student-add.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { StudentsResolver } from './students/services/students.resolver';
-import { StudentDetailsResolver } from './students/services/student-details.resolver';
-import { StudentCanDeactivateGuard } from './students/services/student-edit.deactivate-guard';
 import { AuthGuard } from './services/auth.guard';
 import { PrimengModule } from './primeng/primeng.module';
 import { MessageService } from 'primeng/api';
 import { OctoberBatchInterceptor } from './services/http.interceptor';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/auth.reducer';
+import { StudentModule } from './students/student.module';
 
 
 //     /home - Dashaboard
@@ -44,13 +36,6 @@ const routes: Routes = [
   { path: "products", component: ProductsComponent, canActivate: [AuthGuard] },
   // { path: "productdetails/:id/:email", component: ProductDetailsComponent },
   { path: "productdetails/:id", component: ProductDetailsComponent, canActivate: [AuthGuard] },
-  {
-    path: "students", component: StudentsComponent, canActivate: [AuthGuard], resolve: { students: StudentsResolver }, children: [
-      { path: "new", component: StudentAddComponent },
-      { path: ":id", component: StudentDetailsComponent, resolve: { student: StudentDetailsResolver } }, //, canActivate: [StudentGuardService]
-      { path: ":id/edit", component: StudentEditComponent, canDeactivate: [StudentCanDeactivateGuard] }
-    ]
-  },
   { path: "signup", component: SignUpComponent },
   { path: "", pathMatch: "full", redirectTo: "home" },
   { path: "**", redirectTo: "home" }
@@ -73,17 +58,13 @@ const routes: Routes = [
     HeaderComponent,
     DashboardComponent,
     ProductDetailsComponent,
-    StudentsComponent,
-    StudentDetailsComponent,
-    StudentEditComponent,
-    SignUpComponent,
-    StudentAddComponent
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
+    StudentModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
