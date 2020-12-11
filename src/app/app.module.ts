@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes, Route } from "@angular/router";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import {SharedModule} from "./shared/shared.module";
+import { SharedModule } from "./shared/shared.module";
 
 // import * as c from './component.index';
 import {
@@ -36,6 +36,7 @@ const routes: Routes = [
   { path: "products", component: ProductsComponent, canActivate: [AuthGuard] },
   // { path: "productdetails/:id/:email", component: ProductDetailsComponent },
   { path: "productdetails/:id", component: ProductDetailsComponent, canActivate: [AuthGuard] },
+  { path: "students", loadChildren: () => import("./students/student.module").then(m => m.StudentModule) },
   { path: "signup", component: SignUpComponent },
   { path: "", pathMatch: "full", redirectTo: "home" },
   { path: "**", redirectTo: "home" }
@@ -62,7 +63,6 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    StudentModule,
     FormsModule,
     SharedModule,
     HttpClientModule,
@@ -70,7 +70,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MaterialModule,
     PrimengModule,
-    StoreModule.forRoot({authReducer:authReducer})
+    StoreModule.forRoot({ authReducer: authReducer })
   ],
   providers: [
     LoggerService,

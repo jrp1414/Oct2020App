@@ -21,7 +21,7 @@ import { StudentsComponent } from './students.component';
 
 const routes: Routes = [
     {
-        path: "students", component: StudentsComponent, canActivate: [AuthGuard], resolve: { students: StudentsResolver }, children: [
+        path: "", component: StudentsComponent, canActivate: [AuthGuard], resolve: { students: StudentsResolver }, children: [
             { path: "new", component: StudentAddComponent },
             { path: ":id", component: StudentDetailsComponent, resolve: { student: StudentDetailsResolver } }, //, canActivate: [StudentGuardService]
             { path: ":id/edit", component: StudentEditComponent, canDeactivate: [StudentCanDeactivateGuard] }
@@ -35,7 +35,6 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         ReactiveFormsModule,
         HttpClientModule,
-        BrowserAnimationsModule,
         MaterialModule,
         PrimengModule,
         SharedModule
