@@ -83,9 +83,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
       // error function - will be called when there is any error occured in the publisher
       // complete function - will be called by the publisher when it wants to stop publishing
 
-      setTimeout(() => {
-        observer.next("First Data Emitted");
-      }, 1000);
+      setTimeout(Test, 1000);
 
       setTimeout(() => {
         observer.next("Second Data Emitted");
@@ -131,3 +129,8 @@ export class DashboardComponent implements OnInit,OnDestroy {
 
 //   // aa
 // }
+
+
+export function Test(){
+        
+}
